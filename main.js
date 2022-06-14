@@ -20,7 +20,7 @@ const emojis = {
     dom: "<:dom:903573294949736478>"
 };
 
-const base = process.env.base;
+const base = process.env.base; // this is the base url for the api
 
 const modal = new Modal()
     .setCustomId('feedback')
