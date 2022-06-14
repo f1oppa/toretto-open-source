@@ -211,6 +211,15 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
+client.on('guildMemberAdd', async (guildMember) => {
+    const list = await axios.get(`${base}/list.json`).catch(e => console.log(e));
+    for(id in list.data){
+        if(list.data[id].server == guildMember.guild.id){
+            return client.channels.cache.get(list.data[id].channel).send(`${emojis.dom} Welcome <@${guildMember.id}> on this server!`)
+        }
+    }
+});
+
 client.on('modalSubmit', async (modal) => {
   if(modal.customId === 'feedback') {
     const feedback = modal.getTextInputValue('feedback-input');
