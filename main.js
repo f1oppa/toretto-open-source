@@ -1,5 +1,5 @@
 // built with node v17.6.0, discord.js v13.6.0, axios v0.25.0, dotenv v16.0.0, discord-modals v1.3.7
-// by f1opp
+// by f1oppa
 
 const { Client, Intents, MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const { Modal, showModal, TextInputComponent } = require('discord-modals');
