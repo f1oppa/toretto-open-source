@@ -163,7 +163,7 @@ client.on('messageCreate', (msg) => {
     else if(message.includes("család"))
         return msg.channel.send("Valaki azt mondta hogy... CSALÁD?!")
     }
-});
+);
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
