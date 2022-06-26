@@ -215,7 +215,12 @@ client.on('guildMemberAdd', async (guildMember) => {
     const list = await axios.get(`${base}/list.json`).catch(e => console.log(e));
     for(id in list.data){
         if(list.data[id].server == guildMember.guild.id){
-            return client.channels.cache.get(list.data[id].channel).send(`${emojis.dom} Welcome <@${guildMember.id}> on this server!`)
+		return client.channels.cache.get(list.data[id].channel).send(`${emojis.dom} Welcome <@${guildMember.id}> on this server!`)
+			.catch(async (e) => {
+				const owner = await client.guilds.cache.get(list.data[id].server).fetchOwner();
+				await owner.send(`${emojis.error} ${guildMember} just joined to your server **${client.guilds.cache.get(list.data[id].server).name}**, but I don't have permission to send a welcome message for they. Please give me permission to send text messages to the welcome channel.`)
+					.catch(() => {console.log(`cannot send dm for ${owner.user.username + "#" + owner.user.discriminator}`)});
+			});
         }
     }
 });
